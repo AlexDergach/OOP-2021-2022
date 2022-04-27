@@ -5,6 +5,7 @@ import processing.data.TableRow;
 
 public class Star
 {
+    //All elements of the cvs file
     private boolean hab;
     private String displayName;
     private float distance;
@@ -15,12 +16,14 @@ public class Star
 
     
 
+    //When output of a string is asked for this class this is printed i.e Sys.out.println()
     @Override
     public String toString() {
         return "Star [absMag=" + absMag + ", displayName=" + displayName + ", distance=" + distance + ", hab=" + hab
                 + ", xG=" + xG + ", yG=" + yG + ", zG=" + zG + "]";
     }
 
+    //Getting the rows of each element and inputting it in the table thats imported up above
     public Star(TableRow tr)
     {
         this(
@@ -34,6 +37,7 @@ public class Star
         );
     }
     
+    //Class constructor
     public Star(boolean hab, String displayName, float distance, float xG, float yG, float zG, float absMag) {
         this.hab = hab;
         this.displayName = displayName;
@@ -44,6 +48,7 @@ public class Star
         this.absMag = absMag;
     }
 
+    //Getters and Setters
     public boolean isHab() {
         return hab;
     }
@@ -87,19 +92,26 @@ public class Star
         this.absMag = absMag;
     }
 
+    //Render
+    //Parameter is an instance of the StarMap class pa
     public void render(StarMap pa)
     {
+        //Map(value, range of value 1, second range, starting from left, ends on right)
         float x = PApplet.map(xG, -5, 5, pa.border, pa.width - pa.border);
         float y = PApplet.map(yG, -5, 5, pa.border, pa.height - pa.border);
 
-        
+        //colour of line
         pa.stroke(255, 255, 0);
+        //line(x1,y1,x2,y2)
         pa.line(x, y -5, x, y + 5);
         pa.line(x-5, y, x + 5, y);
+        //Circle colour
         pa.stroke(255, 0, 0);
         pa.noFill();
+        //x, y, radius
         pa.circle(x, y, absMag);
         pa.fill(255);
+        //Text
         pa.textSize(16);
         pa.textAlign(PApplet.LEFT, PApplet.CENTER);
         pa.text(displayName, x + 20, y);

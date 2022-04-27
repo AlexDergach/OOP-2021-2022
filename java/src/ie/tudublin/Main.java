@@ -96,10 +96,8 @@ public class Main
     }
     public static void main(String[] args)
     {
-        YASC();
-
-        // Tara Misty
-        // Tara Tara
+        Main main = new Main();
+		main.starMap();   
         
     }
 }
